@@ -24,17 +24,27 @@ router.get('/all', async (req, res) => {
 // Posts on localhost:3000/posts
 router.post('/', (req, res) => {
     console.log(req.body);
-    const post = new Post({
-        title: req.body.title,
-        description: req.body.description
-    });
+    console.log(req.files);
+    if(!req.files)
+    {
+        console.log("File was not found");
+    }
+    //const post = new Post({
+    //    title: req.body.title,
+    //    description: req.body.description
+    //});
 
-    post.save()
-    .then(data => {
-        res.json(data);
-    })
-    .catch(err => {
-        res.json({message: err});
+    //post.save()
+    //.then(data => {
+    //    res.json(data);
+    //})
+    //.catch(err => {
+    //    res.json({message: err});
+    //});
+    res.json({
+        'body': req.body,
+        'files': req.files,
+        'headers': JSON.stringify(req.headers)
     });
 });
 

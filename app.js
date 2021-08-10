@@ -7,6 +7,9 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(cors());
 
+var fileupload = require("express-fileupload");
+app.use(fileupload());
+
 require('dotenv/config');
 
 // Middleware
@@ -24,7 +27,7 @@ app.get('/', (req, res) => {
 });
 
 // Connect to database
-mongoose.connect(process.env.DB_CONNECTION, 
+mongoose.connect('mongodb://localhost:27017/myapp', 
     { useNewUrlParser: true }, 
     () => { console.log('connected to db');
 });
